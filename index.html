@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<script>
+  function ping() {
+    var url = new URL(window.location.href);
+    var apiUrl = url.searchParams.get("url");
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("pingResult").textContent = data.PING;
+      })
+      .catch(error => {
+        document.getElementById("pingResult").textContent = "Request failed.";
+      });
+  }
+</script>
+
+<h1>API Page</h1>
+
+<button onclick="ping()">Ping API</button>
+<p>Ping Result: <span id="pingResult"></span></p>
